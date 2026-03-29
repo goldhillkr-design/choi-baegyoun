@@ -300,13 +300,37 @@ export default function App() {
               당신의 기업이 꿈꾸는 상상을 알려주세요. <br />
               칸 경영연구소가 가장 정교한 현실로 제작해 드립니다.
             </p>
-            <form className="space-y-6 text-left max-w-xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FloatingInput label="성함" />
-                <FloatingInput label="휴대폰 번호" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-sm">
+              <div className="glass-card p-6 border-white/5">
+                <div className="text-brand-purple mb-2 font-bold uppercase tracking-widest text-[10px]">Address</div>
+                <div className="text-gray-300">광주광역시 북구 첨단과기로 208번길 43-10<br />(마루힐지식센터A동 409호)</div>
               </div>
-              <FloatingInput label="이메일" />
-              <FloatingTextarea label="문의 내용" />
+              <div className="glass-card p-6 border-white/5">
+                <div className="text-brand-purple mb-2 font-bold uppercase tracking-widest text-[10px]">Phone</div>
+                <div className="text-gray-300">062-714-1336</div>
+              </div>
+              <div className="glass-card p-6 border-white/5">
+                <div className="text-brand-purple mb-2 font-bold uppercase tracking-widest text-[10px]">Email</div>
+                <div className="text-gray-300">khancst@empas.com</div>
+              </div>
+            </div>
+
+            <form 
+              action="https://formspree.io/f/mkopjood"
+              method="POST"
+              className="space-y-6 text-left max-w-xl mx-auto"
+            >
+              {/* Formspree Configuration */}
+              <input type="hidden" name="_subject" value="(주)칸 경영연구소 - 새로운 상담 예약 접수" />
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FloatingInput label="성함" name="name" required />
+                <FloatingInput label="휴대폰 번호" name="phone" required />
+              </div>
+              <FloatingInput label="이메일" name="email" type="email" required />
+              <FloatingTextarea label="문의 내용" name="message" required />
               <button type="submit" className="btn-primary w-full mt-8">
                 상담 예약하기
               </button>
@@ -374,23 +398,27 @@ function GalleryItem({ image, category, title, large = false }: { image: string,
   );
 }
 
-function FloatingInput({ label }: { label: string }) {
+function FloatingInput({ label, name, type = "text", required = false }: { label: string, name: string, type?: string, required?: boolean }) {
   return (
     <div className="space-y-2">
       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">{label}</label>
       <input 
-        type="text" 
+        type={type}
+        name={name}
+        required={required}
         className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:bg-white/10 transition-all"
       />
     </div>
   );
 }
 
-function FloatingTextarea({ label }: { label: string }) {
+function FloatingTextarea({ label, name, required = false }: { label: string, name: string, required?: boolean }) {
   return (
     <div className="space-y-2">
       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">{label}</label>
       <textarea 
+        name={name}
+        required={required}
         rows={4}
         className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-brand-purple focus:bg-white/10 transition-all resize-none"
       />

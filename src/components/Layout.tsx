@@ -173,9 +173,9 @@ export default function Layout({ children, isAdmin = false }: LayoutProps) {
           <div>
             <h4 className="font-bold mb-6 text-white">Contact</h4>
             <ul className="space-y-4 text-gray-400">
-              <li>서울특별시 강남구 테헤란로</li>
-              <li>02-1234-5678</li>
-              <li>contact@khan-consulting.com</li>
+              <li>광주광역시 북구 첨단과기로 208번길 43-10<br />(마루힐지식센터A동 409호)</li>
+              <li>062-714-1336</li>
+              <li>khancst@empas.com</li>
             </ul>
           </div>
         </div>
